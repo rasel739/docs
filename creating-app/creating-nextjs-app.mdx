@@ -1,0 +1,210 @@
+---
+title: "Creating a Next.js Application"
+sidebarTitle: "Create Next.js App"
+description: "Set up a new Next.js project from scratch using create-next-app with TypeScript, Tailwind CSS, and the App Router."
+icon: "code"
+---
+
+## Overview
+
+[Next.js](https://nextjs.org) is a powerful React framework that provides server-side rendering, static site generation, API routes, and much more — all out of the box. In this chapter, you'll create a new Next.js application using the official scaffolding tool.
+
+---
+
+## Step 1: Create the Project
+
+Open your terminal and run the following command to scaffold a new Next.js application:
+
+```bash
+npx create-next-app@latest my-nextjs-app
+```
+
+The CLI will prompt you with several configuration options. Here are the **recommended selections**:
+
+```
+✔ Would you like to use TypeScript? … Yes
+✔ Would you like to use ESLint? … Yes
+✔ Would you like to use Tailwind CSS? … Yes
+✔ Would you like your code inside a `src/` directory? … Yes
+✔ Would you like to use App Router? (recommended) … Yes
+✔ Would you like to use Turbopack for next dev? … Yes
+✔ Would you like to customize the import alias (@/* by default)? … No
+```
+
+
+
+<Tip>
+  **Why these choices?**
+  - **TypeScript** catches errors at compile time and improves developer experience with autocomplete.
+  - **ESLint** enforces consistent coding standards across your project.
+  - **Tailwind CSS** provides utility-first styling that pairs perfectly with component-based architectures.
+  - **App Router** is the recommended routing system in Next.js 13+ with support for layouts, loading states, and server components.
+  - **Turbopack** speeds up the development server significantly compared to Webpack.
+</Tip>
+
+---
+
+## Step 2: Navigate to the Project
+
+Once the scaffolding is complete, move into your new project directory:
+
+```bash
+cd my-nextjs-app
+```
+
+---
+
+## Step 3: Explore the Project Structure
+
+Here's an overview of the key files and directories in your new Next.js project:
+
+```
+my-nextjs-app/
+├── src/
+│   └── app/
+│       ├── layout.tsx        # Root layout (wraps all pages)
+│       ├── page.tsx           # Home page component
+│       ├── globals.css        # Global styles (Tailwind imports)
+│       └── favicon.ico        # Site favicon
+├── public/                    # Static assets (images, fonts, etc.)
+├── package.json               # Dependencies and scripts
+├── tsconfig.json              # TypeScript configuration
+├── tailwind.config.ts         # Tailwind CSS configuration
+├── next.config.ts             # Next.js configuration
+├── postcss.config.mjs         # PostCSS configuration
+└── eslint.config.mjs          # ESLint configuration
+```
+
+### Key Files Explained
+
+<AccordionGroup>
+  <Accordion title="src/app/layout.tsx — Root Layout">
+    The root layout wraps every page in your application. It defines the `<html>` and `<body>` tags, sets metadata (title, description), and imports global styles.
+
+    ```tsx
+    import type { Metadata } from "next";
+    import "./globals.css";
+
+    export const metadata: Metadata = {
+      title: "My Next.js App",
+      description: "Built with Next.js and deployed on Vercel",
+    };
+
+    export default function RootLayout({
+      children,
+    }: {
+      children: React.ReactNode;
+    }) {
+      return (
+        <html lang="en">
+          <body>{children}</body>
+        </html>
+      );
+    }
+    ```
+  </Accordion>
+
+  <Accordion title="src/app/page.tsx — Home Page">
+    This is the main page component rendered at the root URL (`/`). You can customize this with your own content.
+
+    ```tsx
+    export default function Home() {
+      return (
+        <main className="flex min-h-screen flex-col items-center justify-center p-24">
+          <h1 className="text-4xl font-bold">
+            Welcome to My Next.js App
+          </h1>
+          <p className="mt-4 text-lg text-gray-600">
+            Built with Next.js and deployed on Vercel
+          </p>
+        </main>
+      );
+    }
+    ```
+  </Accordion>
+
+  <Accordion title="next.config.ts — Next.js Configuration">
+    This file controls the behavior of your Next.js application, including rewrites, redirects, headers, image optimization, and more.
+
+    ```ts
+    import type { NextConfig } from "next";
+
+    const nextConfig: NextConfig = {
+      /* Add custom config here */
+    };
+
+    export default nextConfig;
+    ```
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Step 4: Start the Development Server
+
+Run the development server to see your application in action:
+
+```bash
+npm run dev
+```
+
+Open your browser and navigate to **[http://localhost:3000](http://localhost:3000)**. You should see the default Next.js welcome page.
+
+<img
+  src="/images/nextjs-dev-server.png"
+  alt="Next.js development server running on localhost:3000"
+  style={{ borderRadius: '12px', border: '1px solid #e5e7eb' }}
+/>
+
+---
+
+## Step 5: Make Your First Edit
+
+Let's customize the home page. Open `src/app/page.tsx` and replace the content:
+
+```tsx
+export default function Home() {
+  return (
+    <main className="flex min-h-screen flex-col items-center justify-center p-24 bg-gradient-to-br from-blue-50 to-indigo-100">
+      <div className="text-center">
+        <h1 className="text-5xl font-bold text-gray-900 mb-4">
+          🚀 My Next.js App
+        </h1>
+        <p className="text-xl text-gray-600 mb-8">
+          Built with Next.js 15 &amp; deployed on Vercel
+        </p>
+        <div className="flex gap-4 justify-center">
+          <a
+            href="https://nextjs.org/docs"
+            className="px-6 py-3 bg-black text-white rounded-lg hover:bg-gray-800 transition-colors"
+          >
+            Read the Docs
+          </a>
+          <a
+            href="https://vercel.com"
+            className="px-6 py-3 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
+          >
+            Deploy on Vercel
+          </a>
+        </div>
+      </div>
+    </main>
+  );
+}
+```
+
+Save the file — the browser will automatically refresh with your changes thanks to **Fast Refresh**.
+
+<Note>
+  Next.js supports **Fast Refresh** out of the box, which preserves component state while instantly reflecting your code changes in the browser.
+</Note>
+
+---
+
+## Summary
+
+<Check>
+  You've successfully created a new Next.js application with TypeScript, Tailwind CSS, and the App Router. Your development server is running and you've made your first customization.
+</Check>
+
+**Next up:** [Setting up a GitHub Repository](/github-repository) to version-control your code and prepare for deployment.

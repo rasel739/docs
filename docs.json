@@ -19,7 +19,7 @@
           },
           {
             "group": "Build Your App",
-            "pages": ["creating-nextjs-app", "github-repository"]
+            "pages": ["creating-app/creating-nextjs-app", "creating-app/github-repository"]
           },
           {
             "group": "Deploy to Production",
