@@ -1,0 +1,191 @@
+---
+title: "Setting Up a GitHub Repository"
+sidebarTitle: "GitHub Repository"
+description: "Initialize Git, create a GitHub repository, and push your Next.js project to enable version control and CI/CD deployments."
+icon: "github"
+---
+
+## Overview
+
+With your Next.js application created, the next step is to set up **version control** using Git and push your code to **GitHub**. This is essential for:
+
+- **Collaboration** — Work with team members on the same codebase
+- **Version history** — Track every change and roll back if needed
+- **CI/CD integration** — Enable automatic deployments with Vercel
+
+---
+
+## Step 1: Verify Git Installation
+
+Ensure Git is installed on your system:
+
+```bash
+git --version
+# Should output something like: git version 2.43.0
+```
+
+<Warning>
+  If Git is not installed, download it from [git-scm.com](https://git-scm.com/downloads) and follow the installation instructions for your operating system.
+</Warning>
+
+---
+
+## Step 2: Initialize the Git Repository
+
+`create-next-app` automatically initializes a Git repository and creates an initial commit. Verify this:
+
+```bash
+git log --oneline -1
+# Should show: Initial commit from Create Next App
+```
+
+If for some reason Git wasn't initialized, you can do it manually:
+
+```bash
+git init
+git add .
+git commit -m "Initial commit: Next.js app scaffolded with create-next-app"
+```
+
+---
+
+## Step 3: Review the `.gitignore`
+
+Next.js comes with a well-configured `.gitignore` file that excludes unnecessary files from version control:
+
+```gitignore
+# dependencies
+/node_modules
+/.pnp
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/versions
+
+# testing
+/coverage
+
+# next.js
+/.next/
+/out/
+
+# production
+/build
+
+# misc
+.DS_Store
+*.pem
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# env files
+.env*.local
+
+# vercel
+.vercel
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
+```
+
+<Tip>
+  **Important:** Notice that `.env*.local` files are ignored by default. This means your local environment variables (containing secrets) will **never** be committed to Git. This is a critical security best practice.
+</Tip>
+
+---
+
+## Step 4: Create a GitHub Repository
+
+<Steps>
+  <Step title="Go to GitHub">
+    Navigate to [github.com/new](https://github.com/new) to create a new repository.
+  </Step>
+  <Step title="Configure Repository Settings">
+    Fill in the repository details:
+    - **Repository name:** `my-nextjs-app`
+    - **Description:** `A Next.js application deployed on Vercel`
+    - **Visibility:** Public (or Private — both work with Vercel)
+    - **Do NOT** initialize with a README, `.gitignore`, or license (your project already has these)
+  </Step>
+  <Step title="Create the Repository">
+    Click the **"Create repository"** button.
+  </Step>
+</Steps>
+
+<img
+  src="/images/github-create-repo.png"
+  alt="Creating a new repository on GitHub"
+  style={{ borderRadius: '12px', border: '1px solid #e5e7eb' }}
+/>
+
+---
+
+## Step 5: Connect and Push to GitHub
+
+After creating the repository, GitHub will show you setup instructions. Run the following commands to connect your local repository to GitHub and push your code:
+
+```bash
+# Add the remote origin (replace with your repository URL)
+git remote add origin https://github.com/YOUR_USERNAME/my-nextjs-app.git
+
+# Rename the default branch to main (if not already)
+git branch -M main
+
+# Push your code to GitHub
+git push -u origin main
+```
+
+
+
+---
+
+## Step 6: Verify on GitHub
+
+Navigate to your repository on GitHub (e.g., `https://github.com/YOUR_USERNAME/my-nextjs-app`). You should see all your project files:
+
+
+
+---
+
+## Best Practices for Git Workflow
+
+<CardGroup cols={2}>
+  <Card title="Write Clear Commit Messages" icon="message">
+    Use descriptive commit messages that explain **what** changed and **why**:
+    ```bash
+    git commit -m "feat: add hero section to home page"
+    git commit -m "fix: resolve hydration mismatch in layout"
+    ```
+  </Card>
+  <Card title="Use Feature Branches" icon="code-branch">
+    Create separate branches for new features:
+    ```bash
+    git checkout -b feature/about-page
+    # Make changes, commit, then push
+    git push origin feature/about-page
+    ```
+  </Card>
+  <Card title="Create Pull Requests" icon="code-pull-request">
+    Use pull requests to review code before merging into `main`. Vercel will automatically create **preview deployments** for each PR.
+  </Card>
+  <Card title="Protect the Main Branch" icon="shield">
+    Enable branch protection rules on GitHub to require reviews before merging. Go to **Settings → Branches → Add rule**.
+  </Card>
+</CardGroup>
+
+---
+
+## Summary
+
+<Check>
+  Your Next.js project is now version-controlled with Git and hosted on GitHub. Your repository is ready to be connected to Vercel for automatic deployments.
+</Check>
+
+**Next up:** [Connecting the Project to Vercel](/connecting-to-vercel) to enable automatic builds and deployments.
