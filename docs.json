@@ -27,7 +27,7 @@
             "pages": [
               "deployment/connecting-to-vercel",
               "deployment/environment-variables",
-              "deployment/deployment-steps"
+              "deployment/deployment"
             ]
           }
         ]
