@@ -1,55 +1,43 @@
-# Mintlify Starter Kit
+# Next.js + Vercel Deployment Guide
 
-Use the starter kit to get your docs deployed and ready to customize.
+A comprehensive documentation site built with [Mintlify](https://mintlify.com/) that covers how to build and deploy a Next.js application using Vercel.
 
-Click the green **Use this template** button at the top of this repo to copy the Mintlify starter kit. The starter kit contains examples with
+## 📚 Documentation Topics
 
-- Guide pages
-- Navigation
-- Customizations
-- API reference pages
-- Use of popular components
+1. **Introduction** — Overview, prerequisites, and technology stack
+2. **Creating a Next.js Application** — Scaffolding with `create-next-app`, project structure, and first edits
+3. **Setting Up a GitHub Repository** — Git initialization, remote setup, and best practices
+4. **Connecting to Vercel** — Importing repos, auto-detection, and deployment model
+5. **Managing Environment Variables** — `.env` files, `NEXT_PUBLIC_` prefix, and Vercel dashboard
+6. **Deployment Steps** — Auto-deployments, preview URLs, custom domains, rollbacks, and monitoring
 
-**[Follow the full quickstart guide](https://starter.mintlify.com/quickstart)**
+## 🚀 Getting Started
 
-## AI-assisted writing
-
-Set up your AI coding tool to work with Mintlify:
+### Local Development
 
 ```bash
-npx skills add https://mintlify.com/docs
+# Install dependencies
+npm install
+
+# Start the Mintlify development server
+npm run dev
 ```
 
-This command installs Mintlify's documentation skill for your configured AI tools like Claude Code, Cursor, Windsurf, and others. The skill includes component reference, writing standards, and workflow guidance.
+Open [http://localhost:3000](http://localhost:3000) to view the documentation locally.
 
-See the [AI tools guides](/ai-tools) for tool-specific setup.
+### Deploy on Vercel
 
-## Development
+1. Push this repository to GitHub
+2. Go to [vercel.com/new](https://vercel.com/new)
+3. Import your GitHub repository
+4. Vercel will auto-detect Mintlify and deploy
 
-Install the [Mintlify CLI](https://www.npmjs.com/package/mint) to preview your documentation changes locally. To install, use the following command:
+## 🛠 Built With
 
-```
-npm i -g mint
-```
+- [Mintlify](https://mintlify.com/) — Documentation framework
+- [MDX](https://mdxjs.com/) — Markdown with JSX components
+- [Vercel](https://vercel.com/) — Hosting and deployment
 
-Run the following command at the root of your documentation, where your `docs.json` is located:
+## 📝 License
 
-```
-mint dev
-```
-
-View your local preview at `http://localhost:3000`.
-
-## Publishing changes
-
-Install our GitHub app from your [dashboard](https://dashboard.mintlify.com/settings/organization/github-app) to propagate changes from your repo to your deployment. Changes are deployed to production automatically after pushing to the default branch.
-
-## Need help?
-
-### Troubleshooting
-
-- If your dev environment isn't running: Run `mint update` to ensure you have the most recent version of the CLI.
-- If a page loads as a 404: Make sure you are running in a folder with a valid `docs.json`.
-
-### Resources
-- [Mintlify documentation](https://mintlify.com/docs)
+This project is open source and available under the [MIT License](LICENSE).
